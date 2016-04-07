@@ -128,3 +128,20 @@ if [[ -d /Library/Developer/CommandLineTools/ ]]; then
 		brew install caskroom/cask/brew-cask
 	fi
 fi
+
+if [[ -f /usr/local/bin/brew ]]; then
+	echo ""
+	echo "Installing my personal software via brew"
+	brew install macvim
+	brew install gnupg pass pwgen
+	brew install tree watch unrar p7zip nmap
+	brew install wget aria2
+
+	brew cask install flux spectacle
+	brew cask install google-chrome firefox
+	brew cask install iterm2
+	brew cask install evernote
+	brew cask install github-desktop gitup
+	brew cask install libreoffice macdown mactex lyx
+	brew cask install vlc
+fi
