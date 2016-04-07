@@ -32,7 +32,7 @@ if [ "$response" == "y" ]; then
 
 	# Keyboard: On keypress, fast repeat key
 	defaults write NSGlobalDomain KeyRepeat -int 1
-	defaults write NSGlobalDomain InitialKeyRepeat -int 10
+	defaults write NSGlobalDomain InitialKeyRepeat -int 15
 
 	# Keyboard: Disable autocorrection
 	defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -int 0
@@ -93,33 +93,38 @@ if [ "$response" == "y" ]; then
 	sudo scutil --set LocalHostName "$HOSTNAME"
 	sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$HOSTNAME"
 	sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server ServerDescription -string "$HOSTNAME"
-
-	exit 0
 fi
 
+if [[ ! -f ~/.vimrc ]]; then
+	echo ""
+	echo "Installing .vimrc"
+	curl -L https://raw.githubusercontent.com/marcelverweij/dotfiles/master/.vimrc >>  ~/.vimrc
+fi
 
-if [[ ! -f /usr/bin/xcode-select ]]; then
-	echo "First install Xcode.app before installing the command line Xcode. See Purchases in the App Store."
+if [[ ! -d /Applications/Xcode.app/ ]]; then
+	echo ""
+	echo "Install Xcode.app via the App Store, see the Purchases."
 	open -a "/Applications/App Store.app"
 	exit 0
 fi
 
-if [[ ! -f /usr/local/bin/brew ]]; then
-	echo "Install command line xcode:"
-	/usr/bin/xcode-select --install
-
-	echo "Agree to the xcode licence:"
+if [[ ! -d /Library/Developer/CommandLineTools/ ]]; then
+	echo ""
 	sudo xcodebuild -license
 
-	echo "Install Homebrew:"
-	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-
-	echo "Install Homebrew cask:"
-	# https://github.com/caskroom/homebrew-cask
-	brew install caskroom/cask/brew-cask
+	echo ""
+	echo "Please install 'command line developer tools':"
+	/usr/bin/xcode-select --install
+	echo "Please Wait for 'command line developer tools' to finish installing, before running this script again"
+	exit 0
 fi
 
-if [[ ! -f ~/.vimrc ]]; then
-	echo "Getting my latest .vimrc"
-	curl -L https://raw.githubusercontent.com/marcelverweij/dotfiles/master/.vimrc >>  ~/.vimrc
+if [[ -d /Library/Developer/CommandLineTools/ ]]; then
+	if [[ ! -f /usr/local/bin/brew ]]; then
+		echo ""
+		echo "Installing Homebrew + Cask"
+		/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+		# https://github.com/caskroom/homebrew-cask
+		brew install caskroom/cask/brew-cask
+	fi
 fi
