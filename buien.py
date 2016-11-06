@@ -22,4 +22,4 @@ data = string.split(result, "\r\n")
 for row in data:
 	if row != '':
 		row = string.split(row, '|')
-		print row[1] + '|' + str(mm_per_uur(row[0])) + ' mm/u'
+		print row[1] + ' | ' + str(mm_per_uur(row[0])).rjust(5, ' ') + ' mm/u'
