@@ -2,9 +2,17 @@
 
 import urllib2
 import string
+import sys
 
+# Standaard GPS locatie gebruiken
 latitude = "51"
 longitude = "4"
+
+# Aangepaste GPS locatie gebruiken
+if len(sys.argv[1]) != "":
+	latitude = str(sys.argv[1])
+if len(sys.argv[2]) != "":
+	longitude = str(sys.argv[2])
 
 url = 'http://gps.buienradar.nl/' + \
 	'getrr.php' + \
