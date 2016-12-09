@@ -135,13 +135,13 @@ if [[ -f /usr/local/bin/brew ]]; then
 	brew install macvim
 	brew install gnupg pass pwgen
 	brew install tree watch unrar p7zip nmap
-	brew install wget aria2
+	brew install wget aria2 youtube-dl
 
 	brew cask install flux spectacle
 	brew cask install google-chrome firefox
 	brew cask install iterm2
 	brew cask install evernote
-	brew cask install github-desktop gitup
-	brew cask install libreoffice macdown mactex lyx
-	brew cask install vlc
+	brew cask install github-desktop gitup macdown
+	brew cask install libreoffice
+	brew cask install vlc spotify
 fi
