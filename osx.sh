@@ -134,7 +134,7 @@ if [[ -f /usr/local/bin/brew ]]; then
 	echo "Installing my personal software via brew"
 	brew install macvim
 	brew install gnupg pass pwgen
-	brew install tree watch unrar p7zip nmap
+	brew install tree watch unrar p7zip nmap figlet
 	brew install wget aria2 youtube-dl
 
 	brew cask install flux spectacle
