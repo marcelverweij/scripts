@@ -132,7 +132,6 @@ fi
 if [[ -f /usr/local/bin/brew ]]; then
 	echo ""
 	echo "Installing my personal software via brew"
-	brew install macvim
 	brew install gnupg pass pwgen
 	brew install tree watch unrar p7zip nmap figlet
 	brew install wget aria2 youtube-dl
@@ -141,7 +140,7 @@ if [[ -f /usr/local/bin/brew ]]; then
 	brew cask install google-chrome firefox
 	brew cask install iterm2
 	brew cask install evernote
-	brew cask install github-desktop gitup macdown
+	brew cask install macvim github-desktop gitup macdown
 	brew cask install libreoffice
 	brew cask install vlc spotify
 fi
